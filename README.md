@@ -1,16 +1,13 @@
-# react-native-currency-formatter
+# react-native-currency-format
 
 ## Getting started
 
-`$ npm install react-native-currency-formatter --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-currency-formatter`
+`$ yarn add react-native-currency-format`
 
 ## Usage
+
 ```javascript
-import CurrencyFormatter from 'react-native-currency-formatter';
+import CurrencyFormatter from "react-native-currency-format";
 
 // TODO: What to do with the module?
 CurrencyFormatter;

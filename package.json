@@ -1,6 +1,6 @@
 {
   "name": "react-native-currency-format",
-  "title": "React Native Currency Formatter",
+  "title": "React Native Currency Format",
   "version": "1.0.0",
   "description": "TODO",
   "main": "index.js",
@@ -16,8 +16,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-currency-formatter.git",
-    "baseUrl": "https://github.com/github_account/react-native-currency-formatter"
+    "url": "git+https://github.com/github_account/react-native-currency-format.git",
+    "baseUrl": "https://github.com/github_account/react-native-currency-format"
   },
   "keywords": [
     "react-native"
