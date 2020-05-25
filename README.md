@@ -4,11 +4,17 @@
 
 `$ yarn add react-native-currency-format`
 
+### iOS Only
+
+`$ cd ios && pod install`
+
 ## Usage
 
 ```javascript
 import CurrencyFormatter from "react-native-currency-format";
 
-// TODO: What to do with the module?
-CurrencyFormatter;
+const price = 1234.56;
+const currency = "EUR";
+const formattedPrice = await CurrencyFormatter.format(price, currency);
+console.log(formattedPrice); // "1.234,56 €"
 ```

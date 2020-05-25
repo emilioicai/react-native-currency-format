@@ -9,14 +9,14 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
 
-public class ReactNativeCurrencyFormatterModule extends ReactContextBaseJavaModule {
+public class CurrencyFormatModule extends ReactContextBaseJavaModule {
     private static final String E_FORMAT_ERROR = "E_FORMAT_ERROR";
-    public ReactNativeCurrencyFormatterModule(ReactApplicationContext reactContext) {
+    public CurrencyFormatModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
     @Override
     public String getName() {
-        return "ReactNativeCurrencyFormatter";
+        return "CurrencyFormat";
     }
     @ReactMethod
     public void format(double amount, String currencyCode, Promise promise) {
