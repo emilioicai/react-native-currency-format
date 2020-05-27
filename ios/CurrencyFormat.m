@@ -12,4 +12,9 @@ RCT_EXPORT_METHOD(format:(NSNumber * __nonnull)amount currencyCode:(NSString * _
     resolve([formatter stringFromNumber:amount]);
 }
 
+RCT_EXPORT_METHOD(getCountryCode)
+{
+
+}
+
 @end
