@@ -1,5 +1,5 @@
 #import "CurrencyFormat.h"
-#import <StoreKit/StoreKit.h>
+#import "StoreManager.h"
 
 @implementation CurrencyFormat
 
@@ -13,11 +13,9 @@ RCT_EXPORT_METHOD(format:(NSNumber * __nonnull)amount currencyCode:(NSString * _
     resolve([formatter stringFromNumber:amount]);
 }
 
-RCT_EXPORT_METHOD(getCountryCode:(SKProduct * __nonnull)product resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(getStoreInfo:(NSString * __nonnull)productId resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSLocale* storeLocale = product.priceLocale;
-    NSString* storeCountry = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCountryCode);
-    resolve(storeCountry);
+    [[StoreManager shared] requestAppStoreInfoFor:productId resolver:resolve rejecter:reject];
 }
 
 @end
