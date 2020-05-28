@@ -1,4 +1,5 @@
 #import "CurrencyFormat.h"
+#import <StoreKit/StoreKit.h>
 
 @implementation CurrencyFormat
 
