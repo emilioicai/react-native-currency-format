@@ -45,18 +45,18 @@
         [details setValue:@"Product not found" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"org.domestika.error" code:404 userInfo:details];
         self.reject(@"error", @"Error requesting product data", error);
-        return
+    } else {
+        SKProduct *product = [storeProducts firstObject];
+        NSLocale *storeLocale = product.priceLocale;
+        NSString *countryCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCountryCode);
+        NSString *currencyCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencyCode);
+        NSDictionary *storeInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+            countryCode, @"countryCode",
+            currencyCode, @"currencyCode",
+            nil
+        ];
+        self.resolve(storeInfo);
     }
-    SKProduct *product = [storeProducts firstObject];
-    NSLocale *storeLocale = product.priceLocale;
-    NSString *countryCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCountryCode);
-    NSString *currencyCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencyCode);
-    NSDictionary *storeInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-        countryCode, @"countryCode",
-        currencyCode, @"currencyCode",
-        nil
-    ];
-    self.resolve(storeInfo);
 }
 
 @end
