@@ -40,16 +40,24 @@
 - (void) productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     NSArray *storeProducts = response.products;
-    SKProduct *product = [storeProducts firstObject];
-    NSLocale *storeLocale = product.priceLocale;
-    NSString *countryCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCountryCode);
-    NSString *currencyCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencyCode);
-    NSDictionary *storeInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-        countryCode, @"countryCode",
-        currencyCode, @"currencyCode",
-        nil
-    ];
-    self.resolve(storeInfo);
+    if [storeProducts count] == 0 {
+        NSError *err = [NSError errorWithDomain:@"org.domestika.error" code:404
+                               userInfo:@{
+                                           NSLocalizedDescriptionKey:@"Error finding product"
+                               }];
+        self.reject(@"error", @"Error finding product", error);
+    } else {
+        SKProduct *product = [storeProducts firstObject];
+        NSLocale *storeLocale = product.priceLocale;
+        NSString *countryCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCountryCode);
+        NSString *currencyCode = (NSString*)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencyCode);
+        NSDictionary *storeInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+            countryCode, @"countryCode",
+            currencyCode, @"currencyCode",
+            nil
+        ];
+        self.resolve(storeInfo);
+    }
 }
 
 @end
